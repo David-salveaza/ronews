@@ -1,0 +1,449 @@
+
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoNews - Stiri de Ultima Ora</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font - Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Hide sections by default */
+        .content-section {
+            display: none;
+        }
+        /* Active navigation link style */
+        .nav-link.active {
+            font-weight: 600;
+            color: #1d4ed8; /* Blue-700 */
+            border-bottom: 2px solid #1d4ed8;
+        }
+        /* Table styling for program */
+        .program-table th, .program-table td {
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb; /* Gray-200 */
+            text-align: center;
+        }
+        .program-table th {
+            background-color: #e0f2fe; /* Blue-100 */
+            font-weight: 600;
+        }
+        .program-table tr:nth-child(even) {
+            background-color: #f9fafb; /* Gray-50 */
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <a href="#" class="text-4xl font-bold text-red-600 rounded-lg p-2 hover:text-red-700 transition duration-300">RoNews</a>
+            <nav class="mt-4 md:mt-0">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 rounded-md p-2" data-section="home">Acasă</a></li>
+                    <li><a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 rounded-md p-2" data-section="news">Știri</a></li>
+                    <li><a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 rounded-md p-2" data-section="program">Program</a></li>
+                    <li><a href="#" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300 rounded-md p-2" data-section="about">Despre Noi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+
+        <!-- Acasă Section -->
+        <section id="home-section" class="content-section rounded-lg shadow-lg bg-white p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Ultimele Știri</h2><!-- Featured News -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
+                    <img src="https://placehold.co/600x350/E0E0E0/333333?text=Imagine+Stire+Principala" alt="Imagine Stire Principala" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Titlul Știrii Principale: Descoperire Majoră în Tehnologie</h3>
+                        <p class="text-gray-700 leading-relaxed">Cercetătorii au anunțat o inovație revoluționară care ar putea schimba fundamental modul în care interacționăm cu lumea digitală. Detalii exclusive pe RoNews...</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Citește mai mult &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
+                    <img src="https://placehold.co/600x350/D0D0D0/444444?text=Imagine+Stire+Economica" alt="Imagine Stire Economica" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Economie: Creștere Sustenabilă pe Piața Europeană</h3>
+                        <p class="text-gray-700 leading-relaxed">Analizele recente indică o tendință pozitivă în economia europeană, cu sectoare cheie înregistrand performanțe peste așteptări. RoNews vă aduce toate detaliile...</p>
+                        <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Citește mai mult &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest News Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- News Card 1 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://placehold.co/400x250/C0C0C0/555555?text=Stire+Locala" alt="Stire Locala" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-1">Eveniment Local: Festivalul de Muzică a Atrase Mii de Vizitatori</h4>
+                        <p class="text-gray-600 text-sm">Un succes răsunător pentru ediția din acest an a festivalului, care a adus artiști de renume și a animat comunitatea.</p>
+                        <a href="#" class="text-blue-500 hover:underline text-sm mt-2 inline-block">Detalii &rarr;</a>
+                    </div>
+                </div>
+                <!-- News Card 2 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://placehold.co/400x250/B0B0B0/666666?text=Stire+Sport" alt="Stire Sport" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-1">Sport: Echipa Națională, Pregătită pentru Calificări</h4>
+                        <p class="text-gray-600 text-sm">Antrenorul principal a declarat că echipa este într-o formă excelentă și este optimistă înaintea meciurilor decisive.</p>
+                        <a href="#" class="text-blue-500 hover:underline text-sm mt-2 inline-block">Detalii &rarr;</a>
+                    </div>
+                </div>
+                <!-- News Card 3 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition duration-300">
+                    <img src="https://placehold.co/400x250/A0A0A0/777777?text=Stire+Cultura" alt="Stire Cultura" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-1">Cultură: Expoziție de Artă Modernă la Muzeul Național</h4>
+                        <p class="text-gray-600 text-sm">O colecție impresionantă de lucrări contemporane este acum deschisă publicului, oferind o perspectivă unică asupra artei moderne.</p>
+                        <a href="#" class="text-blue-500 hover:underline text-sm mt-2 inline-block">Detalii &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Stiri Section (Placeholder) -->
+        <section id="news-section" class="content-section rounded-lg shadow-lg bg-white p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Toate Știrile</h2>
+            <p class="text-gray-700">Aceasta este secțiunea unde vor fi afișate toate știrile, organizate pe categorii sau cronologic. În curând, mai multe detalii aici!</p>
+            <!-- You can add more news cards or a filtering system here -->
+        </section>
+
+        <!-- Program Section -->
+        <section id="program-section" class="content-section rounded-lg shadow-lg bg-white p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Programul TV RoNews</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full program-table border-collapse rounded-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-blue-100">
+                            <th class="py-3 px-4 text-left">Ora</th>
+                            <th class="py-3 px-4">Luni</th>
+                            <th class="py-3 px-4">Marți</th>
+                            <th class="py-3 px-4">Miercuri</th>
+                            <th class="py-3 px-4">Joi</th>
+                            <th class="py-3 px-4">Vineri</th>
+                            <th class="py-3 px-4">Sâmbătă</th>
+                            <th class="py-3 px-4">Duminică</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           <td class="font-semibold">00:00 - 00:59</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                        </tr>
+                        <tr>    
+                        <td class="font-semibold">01:00 - 01:59</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                        </tr>
+                        <tr>    
+                        <td class="font-semibold">02:00 - 02:59</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                            <td>Știrile După-Amiezei (r)</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">03:00 - 03:59</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">04:00 - 04:59</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">05:00 - 05:59</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                            <td>NightNews (r)</td>
+                        </tr>
+                        <tr>    
+                        <td class="font-semibold">06:00 - 06:59</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">07:00 - 07:59</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                        </tr>
+                        <tr>    
+                        <td class="font-semibold">08:00 - 08:59</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                            <td>RoNews Matinal</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">09:00 - 09:59</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                        </tr>
+                        <tr>    
+                        <td class="font-semibold">10:00 - 10:59</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                       </tr>
+                        <tr>     
+                        <td class="font-semibold">11:00 - 11:59</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                            <td>Știrile Momentului</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">12:00 - 12:59</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                          </tr>
+                        <tr>  
+                        <td class="font-semibold">13:00 - 13:59</td>
+                            <td>Știri Politice</td>
+                            <td>Știri Politice</td>
+                            <td>Știri Politice</td>
+                            <td>Știri Politice</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">14:00 - 14:59</td>
+                            <td>Știri Politice</td>
+                            <td>Știri Politice</td>
+                            <td>Știri Politice</td>
+                            <td>Știri Politice</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                            <td>RoNews</td>
+                          </tr>
+                        <tr>  
+                         <td class="font-semibold">15:00 - 15:59</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">16:00 - 16:59</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                          </tr>
+                        <tr>  
+                        <td class="font-semibold">17:00 - 17:59</td>
+                            <td>BreakingNews</td>
+                            <td>BreakingNews</td>
+                            <td>BreakingNews</td>
+                            <td>BreakingNews</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                            <td>Live</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">18:00 - 18:59</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                          </tr>
+                        <tr>  
+                        <td class="font-semibold">19:00 - 19:59</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                          </tr>
+                        <tr>  
+                        <td class="font-semibold">20:00 - 20:59</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                            <td>Știrile După-Amiezii</td>
+                          </tr>
+                        <tr>  
+                        <td class="font-semibold">21:00 - 21:59</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                         </tr>
+                        <tr>   
+                        <td class="font-semibold">22:00 - 22:59</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                           </tr>
+                        <tr> 
+                        <td class="font-semibold">23:00 - 23:59</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                            <td>NightNews</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Despre Noi Section -->
+        <section id="about-section" class="content-section rounded-lg shadow-lg bg-white p-6 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Despre RoNews</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                RoNews este sursa ta de încredere pentru știri de ultimă oră, analize aprofundate și reportaje exclusive din România și din întreaga lume. Ne dedicăm oferirii unei jurnalism de calitate, imparțial și relevant pentru publicul nostru.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Echipa noastră de jurnaliști experimentați lucrează neîncetat pentru a vă aduce informații corecte și complete, acoperind o gamă largă de subiecte, de la politică și economie la cultură, sport și tehnologie. Misiunea RoNews este de a informa, de a educa și de a inspira, contribuind la o înțelegere mai bună a evenimentelor care ne modelează viața.
+            </p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-8 rounded-t-lg">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 RoNews. Toate drepturile rezervate.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Facebook</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">WhatsApp</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            // Function to show a specific section
+            const showSection = (sectionId) => {
+                contentSections.forEach(section => {
+                    section.style.display = 'none'; // Hide all sections
+                });
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.style.display = 'block'; // Show the target section
+                }
+            };
+
+            // Function to set active nav link
+            const setActiveLink = (activeLink) => {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            };
+
+            // Event listeners for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionToShow = e.target.dataset.section + '-section';
+                    showSection(sectionToShow);
+                    setActiveLink(e.target);
+                });
+            });
+
+            // Show the home section by default on page load
+            showSection('home-section');
+            setActiveLink(document.querySelector('.nav-link[data-section="home"]'));
+        });
+    </script>
+</body>
+</html>
