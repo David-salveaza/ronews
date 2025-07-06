@@ -1,4 +1,4 @@
-// RoNews - Interactivitate și funcționalități avansate
+// script.js - RoNews - Interactivitate și funcționalități avansate
 
 document.addEventListener('DOMContentLoaded', () => {
     // Selectăm elementele cheie din DOM
@@ -71,24 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializePage();
 
     // --- Funcționalitatea de căutare (doar pentru secțiunea Home) ---
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim(); // Trim spațiile albe
-            const cards = document.querySelectorAll('#home-section .news-card'); // Selectează doar cardurile de știri
-
-            cards.forEach(card => {
-                const title = card.querySelector('h4')?.textContent.toLowerCase() || '';
-                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
-                
-                // Verifică dacă titlul sau descrierea conțin interogarea
-                if (title.includes(query) || description.includes(query)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    }
+    // Moved search logic inside the news loading section for clarity
+    // as it operates on loaded news cards.
 
     // --- Funcționalitatea Dark Mode ---
     const applyTheme = (theme) => {
@@ -148,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Rulează breaking news-ul la fiecare 5 secunde
     if (breakingNewsBar) {
         updateBreakingNews(); // Afișează prima știre imediat
-        setInterval(updateBreakingNews, 5000); 
+        setInterval(updateBreakingNews, 5000);
     }
 
     // --- Loader de pagină (opțional, dacă ai un loader vizibil inițial) ---
@@ -163,53 +147,113 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300); // Așteaptă finalizarea tranziției
         }
     });
-});
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const newsContainer = document.getElementById("news-section");
-  const loadMoreBtn = document.createElement("button");
-  loadMoreBtn.textContent = "Încarcă mai multe știri";
-  loadMoreBtn.className = "mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition";
-  
-  let currentIndex = 0;
-  const newsPerPage = 3;
-  let allNews = [];
+    // --- News Loading from stiri.json and Search functionality ---
+    // Combining the two separate news loading logics into one robust solution.
+    const newsCardsContainer = document.getElementById("news-cards-container"); // Assuming a container for all news cards
+    const newsSection = document.getElementById("news-section"); // The parent of newsCardsContainer, likely for appending the button
+    const loadMoreBtn = document.createElement("button");
+    loadMoreBtn.textContent = "Încarcă mai multe știri";
+    // Using tailwind classes, adjusted for centering the button
+    loadMoreBtn.className = "mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition mx-auto block";
 
-  fetch("stiri.json")
-    .then(res => res.json())
-    .then(data => {
-      allNews = data;
-      showNews();
-      newsContainer.appendChild(loadMoreBtn);
-    });
+    let currentIndex = 0;
+    const initialNewsLoadCount = 6; // Load more news initially
+    const newsLoadIncrement = 3; // News to load on each "Load More" click
+    let allNews = [];
+    let filteredNews = []; // Used for search functionality
 
-  function showNews() {
-    const fragment = document.createDocumentFragment();
-    for (let i = currentIndex; i < currentIndex + newsPerPage && i < allNews.length; i++) {
-      const stire = allNews[i];
-      const card = document.createElement("div");
-      card.className = "bg-white hover:shadow-lg transition rounded-lg overflow-hidden mb-6";
+    const renderNewsCards = (newsToRender) => {
+        const fragment = document.createDocumentFragment();
+        const startIndex = currentIndex;
+        const endIndex = Math.min(startIndex + (currentIndex === 0 ? initialNewsLoadCount : newsLoadIncrement), newsToRender.length);
 
-      card.innerHTML = `
-        <img src="${stire.imagine}" alt="stire" class="w-full h-48 object-cover">
-        <div class="p-4">
-          <span class="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">${stire.eticheta}</span>
-          <h3 class="text-lg font-semibold mt-2">${stire.titlu}</h3>
-          <p class="text-sm text-gray-600 mt-1">${stire.descriere}</p>
-          <span class="text-xs text-gray-400">Publicat la: ${stire.data}</span>
-        </div>
-      `;
-      fragment.appendChild(card);
+        for (let i = startIndex; i < endIndex; i++) {
+            const stire = newsToRender[i];
+            const card = document.createElement("div");
+            // Ensure news-card class is added for CSS styling
+            card.className = "news-card mb-6"; // Added mb-6 for spacing
+
+            card.innerHTML = `
+                <img src="${stire.imagine}" alt="${stire.titlu}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <span class="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">${stire.eticheta}</span>
+                    <h4 class="text-lg font-semibold mt-2">${stire.titlu}</h4>
+                    <p class="text-sm text-gray-600 mt-1">${stire.descriere}</p>
+                    <span class="text-xs text-gray-400">Publicat la: ${stire.data}</span>
+                </div>
+            `;
+            fragment.appendChild(card);
+        }
+        newsCardsContainer.appendChild(fragment);
+        currentIndex = endIndex; // Update currentIndex for the next load
+
+        if (currentIndex >= newsToRender.length) {
+            loadMoreBtn.style.display = "none"; // Hide button if all news are loaded
+        } else {
+            loadMoreBtn.style.display = "block"; // Ensure button is visible if there's more news
+        }
+    };
+
+    const loadAllNews = () => {
+        fetch("stiri.json")
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                allNews = data;
+                filteredNews = [...allNews]; // Initialize filteredNews with all news
+                newsCardsContainer.innerHTML = ''; // Clear existing cards before rendering
+                currentIndex = 0; // Reset index when data is loaded
+                renderNewsCards(filteredNews);
+
+                // Append load more button only if it's the home section and not already added
+                // Or if there are more news to load than initially displayed
+                if (newsSection && !newsSection.contains(loadMoreBtn) && allNews.length > initialNewsLoadCount) {
+                    newsSection.appendChild(loadMoreBtn);
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching news:", error);
+                newsCardsContainer.innerHTML = '<p class="text-red-500">A apărut o eroare la încărcarea știrilor. Vă rugăm să încercați din nou mai târziu.</p>';
+                loadMoreBtn.style.display = "none"; // Hide button on error
+            });
+    };
+
+    // Load news when the Home section is active or when the page loads
+    // This will prevent loading news repeatedly if you navigate away and back
+    document.querySelector('.nav-link[data-section="home"]').addEventListener('click', loadAllNews);
+    // If the page loads directly on #home, ensure news are loaded
+    if (window.location.hash === '#home' || window.location.hash === '') {
+        loadAllNews();
     }
-    currentIndex += newsPerPage;
-    newsContainer.appendChild(fragment);
 
-    if (currentIndex >= allNews.length) {
-      loadMoreBtn.style.display = "none";
+
+    // Event listener for the Load More button
+    loadMoreBtn.addEventListener("click", () => renderNewsCards(filteredNews));
+
+
+    // Search functionality - now properly integrated and acting on filteredNews
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            newsCardsContainer.innerHTML = ''; // Clear current display
+            currentIndex = 0; // Reset index for filtered view
+
+            if (query === '') {
+                filteredNews = [...allNews]; // If query is empty, show all news
+            } else {
+                filteredNews = allNews.filter(stire => {
+                    const title = stire.titlu.toLowerCase();
+                    const description = stire.descriere.toLowerCase();
+                    return title.includes(query) || description.includes(query);
+                });
+            }
+            renderNewsCards(filteredNews);
+        });
     }
-  }
 
-  loadMoreBtn.addEventListener("click", showNews);
 });
-</script>
