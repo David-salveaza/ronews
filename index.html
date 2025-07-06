@@ -1,13 +1,20 @@
 
 <html lang="ro">
 <head>
+    <meta property="og:title" content="RoNews - Știri de Ultima Oră">
+    <meta property="og:description" content="Află cele mai noi știri din România și din lume.">
+    <meta property="og:image" content="https://david-salveaza.github.io/ronews/logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoNews - Stiri de Ultima Ora</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-
+    <style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
     <style>
         /* Custom font - Inter */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
@@ -41,6 +48,9 @@
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
+    <div id="loader" class="fixed inset-0 flex items-center justify-center bg-white z-50 dark:bg-gray-900">
+  <span class="text-xl font-bold animate-pulse text-blue-500">Se încarcă RoNews...</span>
+</div>
     <!-- Header -->
     <header class="bg-white shadow-md py-4">
         <div id="breaking-bar" class="bg-red-600 text-white text-sm py-2 px-4 font-semibold animate-pulse">
