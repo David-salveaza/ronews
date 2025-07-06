@@ -39,3 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
     showSection('home-section');
     setActiveLink(document.querySelector('.nav-link[data-section="home"]'));
 });
+const hash = location.hash.replace('#', '');
+if (hash) {
+  const section = document.querySelector(`[data-section="${hash}"]`);
+  if (section) {
+    section.click();
+  }
+}
+window.addEventListener('load', () => {
+  document.getElementById('loader').style.display = 'none';
+});
