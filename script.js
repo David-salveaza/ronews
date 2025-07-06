@@ -8,6 +8,17 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
     const contentSections = document.querySelectorAll('.content-section');
+    
+    document.getElementById('searchInput')?.addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  const cards = document.querySelectorAll('#home-section .grid > div');
+
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(query) ? 'block' : 'none';
+  });
+});
+
 
     const showSection = (sectionId) => {
         contentSections.forEach(section => {
