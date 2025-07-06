@@ -5,14 +5,14 @@
     "titlu": "Grav accident pe Autostrada Soarelui: șapte mașini implicate în carambol. 14 persoane rănite, inclusiv doi copii",
     "descriere": "O coliziune în lanţ deosebit de gravă a avut loc duminică dimineață pe Autostrada A2, între localităţile Medgidia şi Cernavodă, în judeţul Constanța. Şapte autoturisme au fost implicate într-un carambol produs la kilometrul 171, pe sensul de mers către Bucureşti, soldat cu 14 victime, printre care şi doi minori.",
     "data": "6 Iulie 2025"
-  },  <-- Comma added here
+  },
   {
     "imagine": "https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwJTNBJTJGJTJG/c3RvcmFnZTA4dHJhbnNjb2Rlci5yY3Mt/cmRzLnJvJTJGc3RvcmFnZSUyRjIwMjQl/MkYxMiUyRjE3JTJGMjE1MjQwMl8yMTUy/NDAyX1NjcmVlbnNob3QtMjAyNC0xMi0x/Ny0yMDE3MDQucG5nJnc9NzgwJmg9NDQw/Jmhhc2g9ZWY2MjYwNmZkYjlmZTEwZWI5ZjY5NWYzNGM4MGMzMDA=.thumb.jpg",
     "eticheta": "News Update",
     "titlu": "Noi reguli CNA: fără publicitate „înșelătoare” sau vedete în reclamele la jocuri de noroc. Schimbări pentru protecția minorilor",
     "descriere": "Consiliul Naţional al Audiovizualului (CNA) anunţă transmiterea către Monitorul Oficial a noului Cod de Reglementare a Conţinutului Audiovizual, care aduce schimbări structurale menite să protejeze copiii, să întărească pluralismul, să combată dezinformarea şi să reglementeze conţinutul online, citează Digi24, Potrivit CNA, acest nou cod este rezultatul unui efort instituţional substanţial, desfăşurat de-a lungul a trei ani, care marchează un moment definitoriu în modernizarea reglementării audiovizuale din România.",
     "data": "6 Iulie 2025"
-  },  <-- Comma added here
+  }, 
   {
     "imagine": "https://media.cnn.com/api/v1/images/stellar/prod/140122184610-aman-dmitry-medvedev.jpg?q=w_3663,h_2298,x_0,y_0,c_fill",
     "eticheta": "International",
