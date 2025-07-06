@@ -459,5 +459,54 @@
         });
     </script>
     <script src="script.js"></script>
+     <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const newsContainer = document.getElementById("news-section");
+  const loadMoreBtn = document.createElement("button");
+  loadMoreBtn.textContent = "Încarcă mai multe știri";
+  loadMoreBtn.className = "mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition";
+  
+  let currentIndex = 0;
+  const newsPerPage = 3;
+  let allNews = [];
+
+  fetch("stiri.json")
+    .then(res => res.json())
+    .then(data => {
+      allNews = data;
+      showNews();
+      newsContainer.appendChild(loadMoreBtn);
+    });
+
+  function showNews() {
+    const fragment = document.createDocumentFragment();
+    for (let i = currentIndex; i < currentIndex + newsPerPage && i < allNews.length; i++) {
+      const stire = allNews[i];
+      const card = document.createElement("div");
+      card.className = "bg-white hover:shadow-lg transition rounded-lg overflow-hidden mb-6";
+
+      card.innerHTML = `
+        <img src="${stire.imagine}" alt="stire" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <span class="bg-red-600 text-white px-2 py-1 rounded text-xs font-bold">${stire.eticheta}</span>
+          <h3 class="text-lg font-semibold mt-2">${stire.titlu}</h3>
+          <p class="text-sm text-gray-600 mt-1">${stire.descriere}</p>
+          <span class="text-xs text-gray-400">Publicat la: ${stire.data}</span>
+        </div>
+      `;
+      fragment.appendChild(card);
+    }
+    currentIndex += newsPerPage;
+    newsContainer.appendChild(fragment);
+
+    if (currentIndex >= allNews.length) {
+      loadMoreBtn.style.display = "none";
+    }
+  }
+
+  loadMoreBtn.addEventListener("click", showNews);
+});
+</script>
+
 </body>
 </html>
