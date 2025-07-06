@@ -55,14 +55,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (darkToggleBtn) {
-        darkToggleBtn.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('ron_dark_mode', document.documentElement.classList.contains('dark'));
-        });
-        if (localStorage.getItem('ron_dark_mode') === 'true') {
-            document.documentElement.classList.add('dark');
-        }
-    }
-});
 </script>
